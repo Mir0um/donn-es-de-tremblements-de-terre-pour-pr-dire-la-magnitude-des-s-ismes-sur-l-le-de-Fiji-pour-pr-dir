@@ -1,0 +1,4 @@
+Flask==2.2.2
+flatbuffers==23.1.21
+geopandas==0.12.2
+joblib==1.2.0
