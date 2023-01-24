@@ -1,10 +1,4 @@
-#import pickle
 import pandas as pd
-
-'''# Charger le modèle
-with open('model.pkl', 'rb') as f:
-    loaded_model = pickle.load(f)'''
-
 import warnings
 from joblib import load
 

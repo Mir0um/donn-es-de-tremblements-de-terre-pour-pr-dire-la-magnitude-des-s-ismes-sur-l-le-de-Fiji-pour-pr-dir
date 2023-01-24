@@ -1,18 +1,33 @@
 from flask import Flask, render_template, request
+import pandas as pd
+import warnings
+from joblib import load
 
+import html
 
 app = Flask(__name__)
 
-@app.route("/")
-def form():
-    return "<h1>test.html</h1>"
+@app.route("/", methods=['GET'])
+def select():
+    text = 'bonjour voisi un example de forma json pour la prediction: <br> {"lat":-20.42,"long":181.62,"depth":562,"stations":41} <br> le prediction dans se ca sera de .pour predire l\'adresse et 127.0.0.1:5000/predi'
+    return html.html1 + text + html.html2 
 
-@app.route("/2", methods=["POST"])
-def submit():
-    name = request.form.get("name")
-    return "Hello, " + name
+@app.route("/predi", methods=['GET'])
+def predi():
+    try:
+        warnings.filterwarnings("ignore")
+        loaded_model = load('model.joblib')
+        df = pd.DataFrame([[request.json['lat'], request.json['long'], request.json['depth'], request.json['stations'], ]])
+        prediction = loaded_model.predict(df)
+        print(prediction,"#####################")
+        prediction = "le manetude sera autoure de : " + str(prediction[0]) + " sur l'echele de richter"
+        
+        
+    except:
+        prediction = 'erreur de prediction pas de json fournie. <br> (je recommande l\'utilisation de `Development Platform - Insomnia` pour les appelle a l\'API. )'
+    return html.html1 + prediction + html.html2
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
 
 
