@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET'])
 def select():
-    text = 'bonjour voisi un example de forma json pour la prediction: <br> {"lat":-20.42,"long":181.62,"depth":562,"stations":41} <br> le prediction dans se ca sera de .pour predire l\'adresse et 127.0.0.1:5000/predi'
+    text = 'bonjour voisi un example de forma json pour la prediction: <br> {"lat":-20.42,"long":181.62,"depth":562,"stations":41} > 4.4 <br> {"lat":-15.56,"long":167.62,"depth":127,"stations":122} > 6.4 <br> le prediction dans se ca sera de .pour predire l\'adresse et 127.0.0.1:5000/predi'
     return html.html1 + text + html.html2 
 
 @app.route("/predi", methods=['GET'])
