@@ -2,6 +2,9 @@ from flask import Flask, render_template, request
 import pandas as pd
 import warnings
 from joblib import load
+from sklearn.preprocessing import PolynomialFeatures
+import os
+
 
 import html
 
@@ -24,10 +27,9 @@ def predi():
         
         
     except:
-        prediction = 'erreur de prediction pas de json fournie. <br> (je recommande l\'utilisation de `Development Platform - Insomnia` pour les appelle a l\'API. )'
+        prediction = 'erreur de prediction pas de json fournie. <br> (je recommande l\'utilisation de `Development Platform - Insomnia` pour les appelle a l\'API.) <br> json> '
     return html.html1 + prediction + html.html2
 
 if __name__ == "__main__":
-    app.run()
-
-
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=True, host='0.0.0.0', port=port)
